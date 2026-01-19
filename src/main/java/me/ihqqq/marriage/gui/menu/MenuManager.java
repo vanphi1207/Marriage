@@ -47,6 +47,9 @@ public class MenuManager implements Listener {
         if (!(event.getPlayer() instanceof Player player)) {
             return;
         }
-        openMenus.remove(player.getUniqueId());
+        AbstractMenu menu = openMenus.remove(player.getUniqueId());
+        if (menu != null) {
+            menu.handleClose(event);
+        }
     }
 }

@@ -20,6 +20,12 @@ public interface Storage {
     
     CompletableFuture<MarriageRecord> findByPlayer(UUID player);
 
+
+    CompletableFuture<Void> saveSharedInventory(UUID uuidA, UUID uuidB, String data);
+
+
+    CompletableFuture<String> loadSharedInventory(UUID uuidA, UUID uuidB);
+
     
     void close();
 }
