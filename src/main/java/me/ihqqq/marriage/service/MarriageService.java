@@ -8,6 +8,7 @@ import me.ihqqq.marriage.message.MessageService;
 import me.ihqqq.marriage.model.MarriageRecord;
 import me.ihqqq.marriage.storage.Storage;
 import me.ihqqq.marriage.util.SchedulerUtil;
+import me.ihqqq.marriage.util.TimeUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
@@ -94,6 +95,7 @@ public class MarriageService implements Listener {
                     
                     messages.sendMessage(a, MessageKey.ACCEPT_SUCCESS, Map.of("player", b.getName()));
                     messages.sendMessage(b, MessageKey.ACCEPT_SUCCESS, Map.of("player", a.getName()));
+                    broadcastMarriage(record);
                 });
             });
         });
@@ -180,6 +182,7 @@ public class MarriageService implements Listener {
                     if (pb != null) {
                         messages.sendMessage(pb, MessageKey.ACCEPT_SUCCESS, Map.of("player", Bukkit.getOfflinePlayer(a).getName()));
                     }
+                    broadcastMarriage(record);
                 });
             });
         });
@@ -285,5 +288,37 @@ public class MarriageService implements Listener {
         float volume = (float) section.getDouble("volume", 1.0);
         float pitch = (float) section.getDouble("pitch", 1.0);
         partner.playSound(partner.getLocation(), sound, volume, pitch);
+    }
+
+    private void broadcastMarriage(@NotNull MarriageRecord record) {
+        ConfigurationSection section = plugin.getConfig().getConfigurationSection("marriage.broadcast");
+        if (section == null || !section.getBoolean("enabled", true)) {
+            return;
+        }
+        List<String> lines = section.getStringList("lines");
+        if (lines.isEmpty()) {
+            return;
+        }
+        String dateFormat = section.getString("date-format", "yyyy-MM-dd HH:mm:ss");
+        String since = TimeUtil.formatDateTime(record.getSince(), dateFormat);
+        String nameA = Optional.ofNullable(Bukkit.getOfflinePlayer(record.getUuidA()).getName()).orElse(record.getUuidA().toString());
+        String nameB = Optional.ofNullable(Bukkit.getOfflinePlayer(record.getUuidB()).getName()).orElse(record.getUuidB().toString());
+        Map<String, Object> placeholders = new HashMap<>();
+        placeholders.put("player", nameA);
+        placeholders.put("partner", nameB);
+        placeholders.put("player1", nameA);
+        placeholders.put("player2", nameB);
+        placeholders.put("since", since);
+
+        for (String line : lines) {
+            if (line == null || line.isBlank()) {
+                continue;
+            }
+            String template = line;
+            for (Player target : Bukkit.getOnlinePlayers()) {
+                messages.sendRawMessage(target, template, placeholders);
+            }
+            messages.sendRawMessage(Bukkit.getConsoleSender(), template, placeholders);
+        }
     }
 }

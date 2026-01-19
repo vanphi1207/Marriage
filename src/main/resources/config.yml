@@ -26,6 +26,15 @@ marriage:
   # Enables or disables the marriage chat channel (/marry chat).  Players
   # can toggle their own chat locally regardless of this setting.
   chatEnabled: true
+  broadcast:
+    # Broadcast a message to the whole server when two players get married.
+    enabled: true
+    # Date/time format used for the <since> placeholder.
+    date-format: 'yyyy-MM-dd HH:mm:ss'
+    # Multiple lines are supported.
+    lines:
+      - '<prefix> <yellow><player> <white>&</white> <yellow><partner> <green>đã kết hôn!</green>'
+      - '<gray>Ngày giờ: <white><since></white></gray>'
 
 request:
   # The amount of time (in seconds) before a marriage request times out.
