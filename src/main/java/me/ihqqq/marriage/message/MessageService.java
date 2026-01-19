@@ -9,6 +9,7 @@ import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -92,8 +93,15 @@ public class MessageService {
     public void sendMessage(@NotNull CommandSender receiver, @NotNull MessageKey key, @NotNull Map<String, Object> placeholders) {
         String template = messages.getOrDefault(key, key.getPath());
         // Apply PlaceholderAPI expansions if available
-        if (plugin.getServer().getPluginManager().isPluginEnabled("PlaceholderAPI") && receiver instanceof org.bukkit.entity.Player player) {
+        if (plugin.getServer().getPluginManager().isPluginEnabled("PlaceholderAPI") && receiver instanceof Player player) {
             template = PlaceholderAPI.setPlaceholders(player, template);
+        }
+        MessageTarget target = MessageTarget.CHAT;
+        String trimmed = template.trim();
+        String actionBarPrefix = "actionbar:";
+        if (trimmed.regionMatches(true, 0, actionBarPrefix, 0, actionBarPrefix.length())) {
+            target = MessageTarget.ACTION_BAR;
+            template = trimmed.substring(actionBarPrefix.length()).trim();
         }
         // Build tag resolver for custom placeholders
         TagResolver.Builder builder = TagResolver.builder();
@@ -111,7 +119,11 @@ public class MessageService {
         TagResolver resolver = builder.build();
         Component message = miniMessage.deserialize(template, resolver);
         // Send component
-        receiver.sendMessage(message);
+        if (target == MessageTarget.ACTION_BAR && receiver instanceof Player player) {
+            player.sendActionBar(message);
+        } else {
+            receiver.sendMessage(message);
+        }
     }
 
 
@@ -133,5 +145,10 @@ public class MessageService {
 
     public String getPrefix() {
         return prefix;
+    }
+
+    private enum MessageTarget {
+        CHAT,
+        ACTION_BAR
     }
 }
