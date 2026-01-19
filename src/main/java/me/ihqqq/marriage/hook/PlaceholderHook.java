@@ -46,27 +46,59 @@ public class PlaceholderHook extends PlaceholderExpansion {
         }
         params = params.toLowerCase();
         MarriageRecord record = marriageService.getMarriage(offlinePlayer.getUniqueId()).join();
+        String notMarried = plugin.getConfig().getString("placeholders.notmarry", "Single");
+        String married = plugin.getConfig().getString("placeholders.marry", "Married");
         switch (params) {
             case "notmarry":
-                return plugin.getConfig().getString("placeholders.notmarry", "Single");
+                return notMarried;
             case "marry":
-                return plugin.getConfig().getString("placeholders.marry", "Married");
+                return married;
             case "partner":
-                if (record == null) return "";
-                String partner = plugin.getServer().getOfflinePlayer(record.getPartner(offlinePlayer.getUniqueId())).getName();
-                return partner == null ? "" : partner;
+                return resolvePartnerName(offlinePlayer, record, notMarried);
+            case "partner_formatted":
+                return formatPartner(offlinePlayer, record, notMarried);
             case "since":
-                if (record == null) return "";
+                if (record == null) return notMarried;
                 return TimeUtil.formatDate(record.getSince());
+            case "wedding_date":
+                if (record == null) return notMarried;
+                return TimeUtil.formatDate(record.getSince());
+            case "anniversary":
+                if (record == null) return notMarried;
+                java.time.LocalDate date = java.time.Instant.ofEpochMilli(record.getSince())
+                        .atZone(java.time.ZoneId.systemDefault())
+                        .toLocalDate();
+                return String.format("%02d/%02d", date.getDayOfMonth(), date.getMonthValue());
             case "status":
-                return record == null
-                        ? plugin.getConfig().getString("placeholders.notmarry", "Single")
-                        : plugin.getConfig().getString("placeholders.marry", "Married");
+                return record == null ? notMarried : married;
             case "days":
                 if (record == null) return "0";
                 return String.valueOf(TimeUtil.daysBetween(record.getSince()));
+            case "years":
+                if (record == null) return "0";
+                long years = java.time.temporal.ChronoUnit.YEARS.between(
+                        java.time.Instant.ofEpochMilli(record.getSince()).atZone(java.time.ZoneId.systemDefault()).toLocalDate(),
+                        java.time.LocalDate.now()
+                );
+                return String.valueOf(Math.max(years, 0));
             default:
                 return null;
         }
+    }
+
+    private String resolvePartnerName(@NotNull OfflinePlayer player, @Nullable MarriageRecord record, @NotNull String fallback) {
+        if (record == null) {
+            return fallback;
+        }
+        String partner = plugin.getServer().getOfflinePlayer(record.getPartner(player.getUniqueId())).getName();
+        return partner == null || partner.isBlank() ? fallback : partner;
+    }
+
+    private String formatPartner(@NotNull OfflinePlayer player, @Nullable MarriageRecord record, @NotNull String fallback) {
+        String partner = resolvePartnerName(player, record, fallback);
+        if (partner.equals(fallback)) {
+            return fallback;
+        }
+        return "❤ " + partner;
     }
 }
