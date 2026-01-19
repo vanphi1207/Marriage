@@ -41,7 +41,7 @@ public abstract class AbstractMenu {
     
     public void open() {
         if (inventory == null) {
-            this.inventory = Bukkit.createInventory(null, size, MiniMessage.miniMessage().deserialize(title));
+            this.inventory = createInventory();
             setup();
             
             for (Map.Entry<Integer, MenuButton> entry : buttons.entrySet()) {
@@ -56,9 +56,17 @@ public abstract class AbstractMenu {
         viewer.openInventory(inventory);
     }
 
+    protected Inventory createInventory() {
+        return Bukkit.createInventory(null, size, MiniMessage.miniMessage().deserialize(title));
+    }
+
     
     public Inventory getInventory() {
         return inventory;
+    }
+
+    protected void setInventory(@NotNull Inventory inventory) {
+        this.inventory = inventory;
     }
 
     
@@ -132,9 +140,12 @@ public abstract class AbstractMenu {
             MenuButton button = buttons.get(slot);
             if (button != null) {
                 button.onClick(event);
+                event.setCancelled(true);
+                return;
             }
-            
-            event.setCancelled(true);
+            if (!allowItemMove()) {
+                event.setCancelled(true);
+            }
         } else if (!allowItemMove()) {
             
             event.setCancelled(true);
@@ -144,5 +155,9 @@ public abstract class AbstractMenu {
     
     protected boolean allowItemMove() {
         return false;
+    }
+
+    
+    public void handleClose(@NotNull org.bukkit.event.inventory.InventoryCloseEvent event) {
     }
 }

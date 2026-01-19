@@ -8,6 +8,7 @@ import me.ihqqq.marriage.model.MarriageSettings;
 import me.ihqqq.marriage.service.GiftService;
 import me.ihqqq.marriage.service.MarriageService;
 import me.ihqqq.marriage.service.RequestService;
+import me.ihqqq.marriage.service.SharedInventoryService;
 import me.ihqqq.marriage.service.TeleportService;
 import me.ihqqq.marriage.storage.MysqlStorage;
 import me.ihqqq.marriage.storage.SqliteStorage;
@@ -32,6 +33,7 @@ public class MarriagePlugin extends JavaPlugin {
     private RequestService requestService;
     private TeleportService teleportService;
     private GiftService giftService;
+    private SharedInventoryService sharedInventoryService;
     private MessageService messageService;
     private MarriageSettings marriageSettings;
     private SchedulerUtil schedulerUtil;
@@ -73,6 +75,7 @@ public class MarriagePlugin extends JavaPlugin {
         this.marriageService = new MarriageService(this, storage, messageService);
         this.requestService = new RequestService(this, marriageService, messageService);
         this.teleportService = new TeleportService(this, marriageService, messageService);
+        this.sharedInventoryService = new SharedInventoryService(this);
         this.giftService = new GiftService(this);
 
         this.menuManager = new MenuManager(this);
@@ -151,6 +154,10 @@ public class MarriagePlugin extends JavaPlugin {
 
     public GiftService getGiftService() {
         return giftService;
+    }
+
+    public SharedInventoryService getSharedInventoryService() {
+        return sharedInventoryService;
     }
 
     public MessageService getMessageService() {

@@ -65,6 +65,12 @@ public class MysqlStorage implements Storage {
                                     "chat_enabled TINYINT NOT NULL, " +
                                     "settings_json TEXT, " +
                                     "PRIMARY KEY (uuid_a, uuid_b)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+                    stmt.executeUpdate(
+                            "CREATE TABLE IF NOT EXISTS marriage_shared_inventory (" +
+                                    "uuid_a VARCHAR(36) NOT NULL, " +
+                                    "uuid_b VARCHAR(36) NOT NULL, " +
+                                    "items LONGTEXT, " +
+                                    "PRIMARY KEY (uuid_a, uuid_b)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);
@@ -106,6 +112,15 @@ public class MysqlStorage implements Storage {
             } catch (Exception e) {
                 plugin.getLogger().severe("Error deleting marriage record: " + e.getMessage());
             }
+            String inventorySql = "DELETE FROM marriage_shared_inventory WHERE uuid_a = ? OR uuid_b = ?";
+            try (Connection conn = dataSource.getConnection();
+                 PreparedStatement ps = conn.prepareStatement(inventorySql)) {
+                ps.setString(1, player.toString());
+                ps.setString(2, player.toString());
+                ps.executeUpdate();
+            } catch (Exception e) {
+                plugin.getLogger().severe("Error deleting shared inventory: " + e.getMessage());
+            }
         });
     }
 
@@ -134,6 +149,42 @@ public class MysqlStorage implements Storage {
                 }
             } catch (Exception e) {
                 plugin.getLogger().severe("Error finding marriage record: " + e.getMessage());
+            }
+            return null;
+        });
+    }
+
+    @Override
+    public CompletableFuture<Void> saveSharedInventory(UUID uuidA, UUID uuidB, String data) {
+        return CompletableFuture.runAsync(() -> {
+            String sql = "REPLACE INTO marriage_shared_inventory (uuid_a, uuid_b, items) VALUES (?, ?, ?)";
+            try (Connection conn = dataSource.getConnection();
+                 PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setString(1, uuidA.toString());
+                ps.setString(2, uuidB.toString());
+                ps.setString(3, data);
+                ps.executeUpdate();
+            } catch (Exception e) {
+                plugin.getLogger().severe("Error saving shared inventory: " + e.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public CompletableFuture<String> loadSharedInventory(UUID uuidA, UUID uuidB) {
+        return CompletableFuture.supplyAsync(() -> {
+            String sql = "SELECT items FROM marriage_shared_inventory WHERE uuid_a = ? AND uuid_b = ? LIMIT 1";
+            try (Connection conn = dataSource.getConnection();
+                 PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setString(1, uuidA.toString());
+                ps.setString(2, uuidB.toString());
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        return rs.getString("items");
+                    }
+                }
+            } catch (Exception e) {
+                plugin.getLogger().severe("Error loading shared inventory: " + e.getMessage());
             }
             return null;
         });
