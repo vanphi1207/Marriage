@@ -1,36 +1,37 @@
 gui:
   buttons:
     info:
-      name: '<aqua>Thông tin</aqua>'
+      name: '<aqua>Nhật ký yêu thương</aqua>'
       lore:
-        - '<gray>Xem thông tin hôn nhân</gray>'
+        - '<gray>Câu chuyện của hai bạn</gray>'
         - '<gray>Bạn đời: <white>%marriage_partner%</white></gray>'
         - '<gray>Trạng thái: <white>%marriage_status%</white></gray>'
     teleport:
-      name: '<green>Dịch chuyển</green>'
+      name: '<green>Gặp nhau chớp mắt</green>'
       lore:
-        - '<gray>Dịch chuyển tới bạn đời</gray>'
+        - '<gray>Bước tới bên nhau tức thì</gray>'
+        - '<gray>Khoảng cách hóa gần hơn</gray>'
     home:
-      name: '<yellow>Nhà chung</yellow>'
+      name: '<yellow>Tổ ấm</yellow>'
       lore:
-        - '<gray>Chuột trái để về nhà</gray>'
-        - '<gray>Chuột phải để đặt nhà</gray>'
+        - '<gray>Chuột trái để trở về tổ ấm</gray>'
+        - '<gray>Chuột phải để đặt tổ ấm</gray>'
     chat:
-      name: '<blue>Chat</blue>'
+      name: '<blue>Thì thầm riêng</blue>'
       lore:
-        - '<gray>Bật/tắt chat hôn nhân</gray>'
+        - '<gray>Bật/tắt kênh trò chuyện riêng</gray>'
     gift:
-      name: '<gold>Quà tặng</gold>'
+      name: '<gold>Quà ngọt ngào</gold>'
       lore:
-        - '<gray>Mở menu quà tặng</gray>'
+        - '<gray>Gửi một bất ngờ nhỏ</gray>'
     ring:
-      name: '<light_purple>Nhẫn</light_purple>'
+      name: '<light_purple>Xưởng nhẫn</light_purple>'
       lore:
-        - '<gray>Quản lý nhẫn</gray>'
+        - '<gray>Tùy chỉnh lời hứa</gray>'
     divorce:
-      name: '<red>Ly hôn</red>'
+      name: '<red>Chia tay</red>'
       lore:
-        - '<gray>Khởi tạo ly hôn</gray>'
+        - '<gray>Khép lại mối duyên</gray>'
 
 prefix: '<gray>[<light_purple>♥</light_purple>]</gray>'
 

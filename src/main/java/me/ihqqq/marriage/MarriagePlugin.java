@@ -111,11 +111,12 @@ public class MarriagePlugin extends JavaPlugin {
         String version = getDescription().getVersion();
         int innerWidth = 34;
         String message = String.join("\n",
-                "<gray>┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓</gray>",
+                formatBoxLine("", innerWidth),
+                buildBorder("┏", "┓", innerWidth),
                 formatBoxLine("<gray>Marriage status:</gray> " + stateLabel, innerWidth),
                 formatBoxLine("<gray>author:</gray> <white>ihqqq</white>", innerWidth),
                 formatBoxLine("<gray>version:</gray> <white>" + version + "</white>", innerWidth),
-                "<gray>┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛</gray>"
+                buildBorder("┗", "┛", innerWidth)
         );
         Component component = MiniMessage.miniMessage().deserialize(message);
         Bukkit.getConsoleSender().sendMessage(component);
@@ -125,7 +126,11 @@ public class MarriagePlugin extends JavaPlugin {
     private String formatBoxLine(@NotNull String content, int width) {
         String plainContent = content.replaceAll("<[^>]*>", "");
         int padding = Math.max(0, width - plainContent.length());
-        return "<gray>┃</gray> " + content + " ".repeat(padding) + "<gray>┃</gray>";
+        return "<gray>┃</gray> " + content + "\u00A0".repeat(padding) + "<gray>┃</gray>";
+    }
+
+    private String buildBorder(@NotNull String left, @NotNull String right, int width) {
+        return "<gray>" + left + "━".repeat(width + 1) + right + "</gray>";
     }
 
     public Storage getStorage() {

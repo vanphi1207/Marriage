@@ -1,24 +1,36 @@
 gui:
-  title: '<gold>Marriage Menu</gold>'
+  title: '<gradient:#ff9a9e:#fad0c4>❤ Marriage Lounge ❤</gradient>'
+  fillers:
+    corners:
+      material: PINK_STAINED_GLASS_PANE
+      name: ' '
+      slots:
+        - 0
+        - 8
+        - 45
+        - 53
+    background:
+      material: GRAY_STAINED_GLASS_PANE
+      name: ' '
   buttons:
     info:
-      slot: 10
-      material: BOOK
+      slot: 11
+      material: WRITABLE_BOOK
     teleport:
-      slot: 12
+      slot: 13
       material: ENDER_PEARL
     home:
-      slot: 14
+      slot: 15
       material: OAK_DOOR
     chat:
-      slot: 16
+      slot: 20
       material: PAPER
     gift:
-      slot: 28
+      slot: 24
       material: CHEST
     ring:
-      slot: 30
+      slot: 29
       material: GOLD_NUGGET
     divorce:
-      slot: 32
+      slot: 33
       material: SHEARS
