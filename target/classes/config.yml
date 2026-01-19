@@ -1,0 +1,46 @@
+database:
+  # Valid types are 'sqlite' and 'mysql'.
+  type: sqlite
+  sqlite:
+    # The SQLite database file.  The file is created automatically if it does
+    # not exist.  The plugin will place it inside the plugin's data folder.
+    file: marriage.db
+  mysql:
+    # Hostname of your MySQL server
+    host: localhost
+    # Port of your MySQL server
+    port: 3306
+    # Database name
+    database: minecraft
+    # Authentication credentials
+    username: root
+    password: ''
+    # Maximum number of connections in the connection pool
+    pool-size: 10
+
+marriage:
+  # When set to false, teleport related commands (/marry tp, /marry sethome,
+  # /marry home) will be disabled.  You can control this in game via
+  # feature flags stored in the database too.
+  allowTeleport: true
+  # Enables or disables the marriage chat channel (/marry chat).  Players
+  # can toggle their own chat locally regardless of this setting.
+  chatEnabled: true
+
+request:
+  # The amount of time (in seconds) before a marriage request times out.
+  timeoutSeconds: 60
+  # Cooldown (in seconds) before a player can send another marriage request.
+  cooldownSeconds: 300
+
+messages:
+  # Language file to load (messages_en.yml, messages_vi.yml, etc).
+  language: en
+  # Should the plugin output debug messages to the console?
+  debug: false
+
+placeholders:
+  # Default text for PlaceholderAPI %marriage_notmarry% / %marriage_marry%.
+  notmarry: 'Độc thân'
+  marry: 'Đã kết hôn'
+

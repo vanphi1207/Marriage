@@ -1,0 +1,103 @@
+prefix: '<gray>[<pink>♥</pink>]</gray>'
+
+
+help-header: '<gold>Lệnh Marriage:</gold>'
+help-menu: '<gray>•</gray> <yellow>/marry menu</yellow> <gray>-</gray> Mở GUI kết hôn'
+help-propose: '<gray>•</gray> <yellow>/marry propose <player></yellow> <gray>-</gray> Gửi lời cầu hôn'
+help-accept: '<gray>•</gray> <yellow>/marry accept</yellow> <gray>-</gray> Chấp nhận lời cầu hôn'
+help-deny: '<gray>•</gray> <yellow>/marry deny</yellow> <gray>-</gray> Từ chối lời cầu hôn'
+help-divorce: '<gray>•</gray> <yellow>/marry divorce</yellow> <gray>-</gray> Ly hôn với bạn đời'
+help-info: '<gray>•</gray> <yellow>/marry info [player]</yellow> <gray>-</gray> Xem thông tin hôn nhân'
+help-tp: '<gray>•</gray> <yellow>/marry tp</yellow> <gray>-</gray> Dịch chuyển tới bạn đời'
+help-sethome: '<gray>•</gray> <yellow>/marry sethome</yellow> <gray>-</gray> Đặt nhà chung'
+help-home: '<gray>•</gray> <yellow>/marry home</yellow> <gray>-</gray> Dịch chuyển về nhà chung'
+help-chat: '<gray>•</gray> <yellow>/marry chat</yellow> <gray>-</gray> Bật/tắt kênh chat hôn nhân'
+help-msg: '<gray>•</gray> <yellow>/marry msg <text></yellow> <gray>-</gray> Nhắn tin riêng cho bạn đời'
+help-gift: '<gray>•</gray> <yellow>/marry gift</yellow> <gray>-</gray> Mở menu quà tặng'
+help-ring: '<gray>•</gray> <yellow>/marry ring</yellow> <gray>-</gray> Quản lý nhẫn'
+help-reload: '<gray>•</gray> <yellow>/marry reload</yellow> <gray>-</gray> Tải lại cấu hình và tin nhắn'
+
+propose-sent: '<prefix> <green>Bạn đã cầu hôn <yellow><player></yellow>.</green>'
+propose-received: '<prefix> <yellow><player> đã cầu hôn bạn! Dùng <green>/marry accept</green> hoặc <red>/marry deny</red>.</yellow>'
+propose-already-sent: '<prefix> <red>Bạn đã cầu hôn <yellow><player></yellow>. Hãy chờ họ phản hồi.</red>'
+propose-cooldown: '<prefix> <red>Vui lòng chờ trước khi gửi lời cầu hôn mới.</red>'
+propose-self: '<prefix> <red>Bạn không thể tự kết hôn với chính mình.</red>'
+already-married: '<prefix> <red>Bạn đã kết hôn với <yellow><partner></yellow>.</red>'
+target-already-married: '<prefix> <red><player> đã kết hôn với người khác.</red>'
+no-proposal: '<prefix> <red>Bạn không có lời cầu hôn đang chờ.</red>'
+accept-success: '<prefix> <green>Bạn và <yellow><player></yellow> đã kết hôn!</green>'
+deny-success: '<prefix> <red>Bạn đã từ chối lời cầu hôn từ <yellow><player></yellow>.</red>'
+propose-denied: '<prefix> <red>Lời cầu hôn của bạn đã bị <yellow><player></yellow> từ chối.</red>'
+divorce-confirm: '<prefix> <yellow>Bạn chắc chắn chứ? Gõ <red>/marry divorce confirm</red> để tiếp tục.</yellow>'
+divorce-success: '<prefix> <red>Bạn và <yellow><player></yellow> đã ly hôn.</red>'
+not-married: '<prefix> <red>Bạn chưa kết hôn.</red>'
+info-single: '<prefix> <gray>Bạn hiện đang <red>độc thân</red>.</gray>'
+info-married: '<prefix> <gray>Bạn đã kết hôn với <yellow><partner></yellow> từ <aqua><since></aqua> (<green><days></green> ngày).</gray>'
+tp-disabled: '<prefix> <red>Chức năng dịch chuyển đã bị tắt.</red>'
+tp-success: '<prefix> <green>Đã dịch chuyển tới bạn đời.</green>'
+sethome-success: '<prefix> <green>Đã đặt nhà chung.</green>'
+home-success: '<prefix> <green>Đã dịch chuyển về nhà chung.</green>'
+home-not-set: '<prefix> <red>Bạn chưa đặt nhà chung.</red>'
+chat-toggled: '<prefix> <yellow>Chat hôn nhân đã được <state>.</yellow>'
+msg-format: '<prefix> <gray>[<yellow>Tới <partner></yellow>] <white><text></white>'
+msg-format-received: '<prefix> <gray>[<yellow>Từ <player></yellow>] <white><text></white>'
+reload-success: '<prefix> <green>Đã tải lại cấu hình Marriage.</green>'
+
+gui:
+  buttons:
+    info:
+      name: '<aqua>Thông tin</aqua>'
+      lore:
+        - '<gray>Xem thông tin hôn nhân</gray>'
+        - '<gray>Bạn đời: <white>%marriage_partner%</white></gray>'
+        - '<gray>Trạng thái: <white>%marriage_status%</white></gray>'
+    teleport:
+      name: '<green>Dịch chuyển</green>'
+      lore:
+        - '<gray>Dịch chuyển tới bạn đời</gray>'
+    home:
+      name: '<yellow>Nhà chung</yellow>'
+      lore:
+        - '<gray>Chuột trái để về nhà</gray>'
+        - '<gray>Chuột phải để đặt nhà</gray>'
+    chat:
+      name: '<blue>Chat</blue>'
+      lore:
+        - '<gray>Bật/tắt chat hôn nhân</gray>'
+    gift:
+      name: '<gold>Quà tặng</gold>'
+      lore:
+        - '<gray>Mở menu quà tặng</gray>'
+    ring:
+      name: '<light_purple>Nhẫn</light_purple>'
+      lore:
+        - '<gray>Quản lý nhẫn</gray>'
+    divorce:
+      name: '<red>Ly hôn</red>'
+      lore:
+        - '<gray>Khởi tạo ly hôn</gray>'
+
+# Admin help (displayed with /marryadmin)
+admin-help: '<gold>Lệnh Marriage Admin:</gold>'
+admin-help-set: '<gray>•</gray> <yellow>/marryadmin set <player1> <player2></yellow> <gray>-</gray> Ép kết hôn 2 người chơi'
+admin-help-divorce: '<gray>•</gray> <yellow>/marryadmin divorce <player></yellow> <gray>-</gray> Ép ly hôn người chơi'
+admin-help-info: '<gray>•</gray> <yellow>/marryadmin info <player></yellow> <gray>-</gray> Xem thông tin hôn nhân'
+admin-help-reload: '<gray>•</gray> <yellow>/marryadmin reload</yellow> <gray>-</gray> Tải lại cấu hình và tin nhắn'
+
+# Additional generic messages
+player-not-found: '<prefix> <red>Không tìm thấy người chơi <yellow><player></yellow>.</red>'
+no-permission: '<prefix> <red>Bạn không có quyền dùng lệnh này.</red>'
+not-a-player: '<prefix> <red>Lệnh này chỉ dành cho người chơi.</red>'
+partner-offline: '<prefix> <red>Bạn đời hiện đang offline.</red>'
+chat-disabled: '<prefix> <red>Chat hôn nhân đang bị tắt toàn cục.</red>'
+ring-unimplemented: '<prefix> <yellow>Tính năng này chưa được triển khai.</yellow>'
+
+# Info messages for other players
+info-single-other: '<prefix> <gray><yellow><player></yellow> đang <red>độc thân</red>.</gray>'
+info-married-other: '<prefix> <gray><yellow><player></yellow> đã kết hôn với <yellow><partner></yellow> từ <aqua><since></aqua> (<green><days></green> ngày).</gray>'
+
+# Administrative messages
+admin-set-success: '<prefix> <green>Đã đặt <yellow><player></yellow> và <yellow><player2></yellow> kết hôn.</green>'
+admin-divorce-success: '<prefix> <green><yellow><player></yellow> đã bị ép ly hôn.</green>'
+admin-info-married: '<prefix> <gray><yellow><player></yellow> đã kết hôn với <yellow><partner></yellow> từ <aqua><since></aqua> (<green><days></green> ngày).</gray>'
+admin-info-single: '<prefix> <gray><yellow><player></yellow> đang <red>độc thân</red>.</gray>'

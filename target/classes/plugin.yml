@@ -1,0 +1,85 @@
+name: Marriage
+main: me.ihqqq.marriage.MarriagePlugin
+version: 1.0.0
+api-version: "1.21"
+softdepend:
+  - PlaceholderAPI
+
+libraries:
+  - com.zaxxer:HikariCP:5.0.1
+  - org.xerial:sqlite-jdbc:3.42.0.0
+
+commands:
+  marry:
+    description: Base command for the Marriage plugin.
+    usage: "/marry <subcommand>"
+    permission: marriage.use
+    aliases: [m]
+  marryadmin:
+    description: Administrative commands for the Marriage plugin.
+    usage: "/marryadmin <subcommand>"
+    permission: marriage.admin
+
+permissions:
+  marriage.use:
+    description: Allows use of the base marriage command.
+    default: true
+  marriage.menu:
+    description: Allows players to open the marriage GUI menu.
+    default: true
+  marriage.propose:
+    description: Allows proposing to another player.
+    default: true
+  marriage.accept:
+    description: Allows accepting a marriage proposal.
+    default: true
+  marriage.deny:
+    description: Allows denying a marriage proposal.
+    default: true
+  marriage.divorce:
+    description: Allows initiating a divorce with a partner.
+    default: true
+  marriage.tp:
+    description: Allows teleporting to a partner.
+    default: true
+  marriage.sethome:
+    description: Allows setting the home for a marriage.
+    default: true
+  marriage.home:
+    description: Allows teleporting home for a marriage.
+    default: true
+  marriage.chat:
+    description: Allows toggling marriage chat.
+    default: true
+  marriage.msg:
+    description: Allows sending a private message to a partner.
+    default: true
+  marriage.gift:
+    description: Allows accessing the marriage gift menu.
+    default: true
+  marriage.ring:
+    description: Allows using ring related features.
+    default: true
+  marriage.reload:
+    description: Allows reloading the plugin configuration.
+    default: op
+  marriage.admin:
+    description: Gives access to all administrative marriage commands.
+    default: op
+    children:
+      marriage.admin.set: true
+      marriage.admin.divorce: true
+      marriage.admin.info: true
+      marriage.admin.reload: true
+  marriage.admin.set:
+    description: Allows an administrator to forcibly set two players as married.
+    default: op
+  marriage.admin.divorce:
+    description: Allows an administrator to forcibly divorce a player.
+    default: op
+  marriage.admin.info:
+    description: Allows an administrator to view marriage information.
+    default: op
+  marriage.admin.reload:
+    description: Allows an administrator to reload the plugin configuration.
+    default: op

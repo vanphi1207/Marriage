@@ -1,0 +1,103 @@
+gui:
+  buttons:
+    info:
+      name: '<aqua>Info</aqua>'
+      lore:
+        - '<gray>View your marriage info</gray>'
+        - '<gray>Partner: <white>%marriage_partner%</white></gray>'
+        - '<gray>Status: <white>%marriage_status%</white></gray>'
+    teleport:
+      name: '<green>Teleport</green>'
+      lore:
+        - '<gray>Teleport to your partner</gray>'
+    home:
+      name: '<yellow>Home</yellow>'
+      lore:
+        - '<gray>Left click to teleport home</gray>'
+        - '<gray>Right click to set home</gray>'
+    chat:
+      name: '<blue>Chat</blue>'
+      lore:
+        - '<gray>Toggle marriage chat</gray>'
+    gift:
+      name: '<gold>Gift</gold>'
+      lore:
+        - '<gray>Open the gift menu</gray>'
+    ring:
+      name: '<light_purple>Ring</light_purple>'
+      lore:
+        - '<gray>Manage your ring</gray>'
+    divorce:
+      name: '<red>Divorce</red>'
+      lore:
+        - '<gray>Initiate a divorce</gray>'
+
+prefix: '<gray>[<light_purple>♥</light_purple>]</gray>'
+
+help-header: '<gold>Marriage Commands:</gold>'
+help-menu: '<gray>•</gray> <yellow>/marry menu</yellow> <gray>-</gray> Open the marriage GUI'
+help-propose: '<gray>•</gray> <yellow>/marry propose <player></yellow> <gray>-</gray> Send a proposal to a player'
+help-accept: '<gray>•</gray> <yellow>/marry accept</yellow> <gray>-</gray> Accept a pending marriage proposal'
+help-deny: '<gray>•</gray> <yellow>/marry deny</yellow> <gray>-</gray> Deny a pending marriage proposal'
+help-divorce: '<gray>•</gray> <yellow>/marry divorce</yellow> <gray>-</gray> Initiate a divorce with your partner'
+help-info: '<gray>•</gray> <yellow>/marry info [player]</yellow> <gray>-</gray> View marriage information'
+help-tp: '<gray>•</gray> <yellow>/marry tp</yellow> <gray>-</gray> Teleport to your partner'
+help-sethome: '<gray>•</gray> <yellow>/marry sethome</yellow> <gray>-</gray> Set your marriage home location'
+help-home: '<gray>•</gray> <yellow>/marry home</yellow> <gray>-</gray> Teleport to your marriage home'
+help-chat: '<gray>•</gray> <yellow>/marry chat</yellow> <gray>-</gray> Toggle marriage chat channel'
+help-msg: '<gray>•</gray> <yellow>/marry msg <text></yellow> <gray>-</gray> Send a private message to your partner'
+help-gift: '<gray>•</gray> <yellow>/marry gift</yellow> <gray>-</gray> Open the gift menu'
+help-ring: '<gray>•</gray> <yellow>/marry ring</yellow> <gray>-</gray> Manage your ring'
+help-reload: '<gray>•</gray> <yellow>/marry reload</yellow> <gray>-</gray> Reload configuration and messages'
+
+propose-sent: '<prefix> <green>You have proposed to <yellow><player></yellow>.</green>'
+propose-received: '<prefix> <yellow><player> has proposed to you! Use <green>/marry accept</green> or <red>/marry deny</red>.</yellow>'
+propose-already-sent: '<prefix> <red>You have already proposed to <yellow><player></yellow>. Please wait for them to respond.</red>'
+propose-cooldown: '<prefix> <red>Please wait before sending another proposal.</red>'
+propose-self: '<prefix> <red>You cannot marry yourself.</red>'
+already-married: '<prefix> <red>You are already married to <yellow><partner></yellow>.</red>'
+target-already-married: '<prefix> <red><player> is already married to someone else.</red>'
+no-proposal: '<prefix> <red>You do not have any pending proposals.</red>'
+accept-success: '<prefix> <green>You and <yellow><player></yellow> are now married!</green>'
+deny-success: '<prefix> <red>You have denied the proposal from <yellow><player></yellow>.</red>'
+propose-denied: '<prefix> <red>Your proposal was denied by <yellow><player></yellow>.</red>'
+divorce-confirm: '<prefix> <yellow>Are you sure? Type <red>/marry divorce confirm</red> to proceed.</yellow>'
+divorce-success: '<prefix> <red>You and <yellow><player></yellow> have divorced.</red>'
+not-married: '<prefix> <red>You are not married.</red>'
+info-single: '<prefix> <gray>You are currently <red>single</red>.</gray>'
+info-married: '<prefix> <gray>You are married to <yellow><partner></yellow> since <aqua><since></aqua> (<green><days></green> days).</gray>'
+tp-disabled: '<prefix> <red>Teleportation is disabled.</red>'
+tp-success: '<prefix> <green>Teleported to your partner.</green>'
+sethome-success: '<prefix> <green>Your marriage home has been set.</green>'
+home-success: '<prefix> <green>Teleported to your marriage home.</green>'
+home-not-set: '<prefix> <red>Your marriage home has not been set.</red>'
+chat-toggled: '<prefix> <yellow>Marriage chat toggled <state>.</yellow>'
+msg-format: '<prefix> <gray>[<yellow>To <partner></yellow>] <white><text></white>'
+msg-format-received: '<prefix> <gray>[<yellow>From <player></yellow>] <white><text></white>'
+reload-success: '<prefix> <green>Marriage configuration reloaded.</green>'
+
+
+# Admin help (displayed with /marryadmin)
+admin-help: '<gold>Marriage Admin Commands:</gold>'
+admin-help-set: '<gray>•</gray> <yellow>/marryadmin set <player1> <player2></yellow> <gray>-</gray> Forcefully marry two players'
+admin-help-divorce: '<gray>•</gray> <yellow>/marryadmin divorce <player></yellow> <gray>-</gray> Forcefully divorce the player'
+admin-help-info: '<gray>•</gray> <yellow>/marryadmin info <player></yellow> <gray>-</gray> View marriage info about the player'
+admin-help-reload: '<gray>•</gray> <yellow>/marryadmin reload</yellow> <gray>-</gray> Reload configuration and messages'
+
+# Additional generic messages
+player-not-found: '<prefix> <red>Could not find player <yellow><player></yellow>.</red>'
+no-permission: '<prefix> <red>You do not have permission to perform this command.</red>'
+not-a-player: '<prefix> <red>This command can only be run by a player.</red>'
+partner-offline: '<prefix> <red>Your partner is currently offline.</red>'
+chat-disabled: '<prefix> <red>Marriage chat is globally disabled.</red>'
+ring-unimplemented: '<prefix> <yellow>This feature is not yet implemented.</yellow>'
+
+# Info messages for other players
+info-single-other: '<prefix> <gray><yellow><player></yellow> is <red>single</red>.</gray>'
+info-married-other: '<prefix> <gray><yellow><player></yellow> is married to <yellow><partner></yellow> since <aqua><since></aqua> (<green><days></green> days).</gray>'
+
+# Administrative messages
+admin-set-success: '<prefix> <green>Set <yellow><player></yellow> and <yellow><player2></yellow> as married.</green>'
+admin-divorce-success: '<prefix> <green><yellow><player></yellow> has been forcibly divorced.</green>'
+admin-info-married: '<prefix> <gray><yellow><player></yellow> is married to <yellow><partner></yellow> since <aqua><since></aqua> (<green><days></green> days).</gray>'
+admin-info-single: '<prefix> <gray><yellow><player></yellow> is <red>single</red>.</gray>'

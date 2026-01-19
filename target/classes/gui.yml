@@ -1,0 +1,24 @@
+gui:
+  title: '<gold>Marriage Menu</gold>'
+  buttons:
+    info:
+      slot: 10
+      material: BOOK
+    teleport:
+      slot: 12
+      material: ENDER_PEARL
+    home:
+      slot: 14
+      material: OAK_DOOR
+    chat:
+      slot: 16
+      material: PAPER
+    gift:
+      slot: 28
+      material: CHEST
+    ring:
+      slot: 30
+      material: GOLD_NUGGET
+    divorce:
+      slot: 32
+      material: SHEARS
