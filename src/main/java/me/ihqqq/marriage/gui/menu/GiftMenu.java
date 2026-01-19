@@ -27,7 +27,8 @@ public class GiftMenu extends AbstractMenu {
                     Player player = (event.getWhoClicked() instanceof Player p) ? p : viewer;
                     player.closeInventory();
                     
-                    plugin.getSchedulerUtil().runSyncLater(() -> player.performCommand("marry menu"), 1L);
+                    plugin.getSchedulerUtil().runSyncLater(() -> plugin.getMenuManager()
+                            .openMenu(player, new MarriageMenu(plugin, player)), 1L);
                 }
         ));
     }
