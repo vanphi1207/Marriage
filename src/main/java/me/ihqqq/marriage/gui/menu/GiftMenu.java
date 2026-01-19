@@ -32,10 +32,4 @@ public class GiftMenu extends AbstractMenu {
                 }
         ));
     }
-
-    @Override
-    protected boolean allowItemMove() {
-        
-        return true;
-    }
 }

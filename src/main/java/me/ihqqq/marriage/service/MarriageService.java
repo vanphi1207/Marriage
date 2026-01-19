@@ -9,7 +9,9 @@ import me.ihqqq.marriage.model.MarriageRecord;
 import me.ihqqq.marriage.storage.Storage;
 import me.ihqqq.marriage.util.SchedulerUtil;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -256,7 +258,32 @@ public class MarriageService implements Listener {
                 placeholdersPartner.put("player", player.getName());
                 placeholdersPartner.put("text", text);
                 messages.sendMessage(partner, MessageKey.MSG_FORMAT_RECEIVED, placeholdersPartner);
+                playReceivedSound(partner);
             });
         });
+    }
+
+    private void playReceivedSound(@NotNull Player partner) {
+        ConfigurationSection section = plugin.getConfig().getConfigurationSection("sounds.msg-received");
+        if (section == null) {
+            return;
+        }
+        if (!section.getBoolean("enabled", true)) {
+            return;
+        }
+        String soundName = section.getString("sound", "ENTITY_EXPERIENCE_ORB_PICKUP");
+        if (soundName == null || soundName.isBlank()) {
+            return;
+        }
+        Sound sound;
+        try {
+            sound = Sound.valueOf(soundName.trim().toUpperCase(Locale.ROOT));
+        } catch (IllegalArgumentException ex) {
+            plugin.getLogger().warning("Invalid sound for sounds.msg-received: " + soundName);
+            return;
+        }
+        float volume = (float) section.getDouble("volume", 1.0);
+        float pitch = (float) section.getDouble("pitch", 1.0);
+        partner.playSound(partner.getLocation(), sound, volume, pitch);
     }
 }
