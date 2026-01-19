@@ -93,7 +93,7 @@ public class MarriagePlugin extends JavaPlugin {
             this.placeholderHook = new PlaceholderHook(this);
             this.placeholderHook.register();
         }
-        getLogger().info(getName() + " v" + getDescription().getVersion() + " by " + String.join(", ", getDescription().getAuthors()) + " enabled.");
+        sendLifecycleMessage("enabled", "<green>ENABLED</green>");
     }
 
     @Override
@@ -109,17 +109,23 @@ public class MarriagePlugin extends JavaPlugin {
 
     private void sendLifecycleMessage(@NotNull String state, @NotNull String stateLabel) {
         String version = getDescription().getVersion();
-        String title = "<light_purple>Marriage</light_purple>";
+        int innerWidth = 34;
         String message = String.join("\n",
                 "<gray>┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓</gray>",
-                "<gray>┃</gray> " + title + " <gray>status:</gray> " + stateLabel + " <gray>┃</gray>",
-                "<gray>┃</gray> <gray>author:</gray> <white>ihqqq</white> <gray>┃</gray>",
-                "<gray>┃</gray> <gray>version:</gray> <white>" + version + "</white> <gray>┃</gray>",
+                formatBoxLine("<gray>Marriage status:</gray> " + stateLabel, innerWidth),
+                formatBoxLine("<gray>author:</gray> <white>ihqqq</white>", innerWidth),
+                formatBoxLine("<gray>version:</gray> <white>" + version + "</white>", innerWidth),
                 "<gray>┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛</gray>"
         );
         Component component = MiniMessage.miniMessage().deserialize(message);
         Bukkit.getConsoleSender().sendMessage(component);
         getLogger().info("Marriage plugin " + state + ".");
+    }
+
+    private String formatBoxLine(@NotNull String content, int width) {
+        String plainContent = content.replaceAll("<[^>]*>", "");
+        int padding = Math.max(0, width - plainContent.length());
+        return "<gray>┃</gray> " + content + " ".repeat(padding) + "<gray>┃</gray>";
     }
 
     public Storage getStorage() {
