@@ -118,10 +118,21 @@ public class MarriageMenu extends AbstractMenu {
     }
 
     private String applyPlaceholders(@NotNull String input) {
+        String result = input;
+        boolean hasPartnerPlaceholder = input.contains("%marriage_partner%");
         if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
-            return PlaceholderAPI.setPlaceholders(viewer, input);
+            result = PlaceholderAPI.setPlaceholders(viewer, input);
         }
-        return input;
+        if (hasPartnerPlaceholder) {
+            String fallback = messages.getString("placeholders.marriage-partner.single");
+            if (fallback != null && !fallback.isBlank()) {
+                String stripped = input.replace("%marriage_partner%", "");
+                if (result.contains("%marriage_partner%") || result.equals(stripped)) {
+                    result = input.replace("%marriage_partner%", fallback);
+                }
+            }
+        }
+        return result;
     }
 
     private record ConfiguredButton(int slot, org.bukkit.inventory.ItemStack item) {

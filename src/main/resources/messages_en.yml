@@ -34,6 +34,10 @@ gui:
 
 prefix: '<gray>[<light_purple>♥</light_purple>]</gray>'
 
+placeholders:
+  marriage-partner:
+    single: 'Single'
+
 help-header: '<gold>Marriage Commands:</gold>'
 help-menu: '<gray>•</gray> <yellow>/marry menu</yellow> <gray>-</gray> Open the marriage GUI'
 help-propose: '<gray>•</gray> <yellow>/marry propose <player></yellow> <gray>-</gray> Send a proposal to a player'
@@ -71,7 +75,7 @@ tp-success: '<prefix> <green>Teleported to your partner.</green>'
 sethome-success: '<prefix> <green>Your marriage home has been set.</green>'
 home-success: '<prefix> <green>Teleported to your marriage home.</green>'
 home-not-set: '<prefix> <red>Your marriage home has not been set.</red>'
-chat-toggled: '<prefix> <yellow>Marriage chat toggled <state>.</yellow>'
+chat-toggled: 'actionbar:<yellow>Marriage chat toggled <state>.</yellow>'
 msg-format: '<prefix> <gray>[<yellow>To <partner></yellow>] <white><text></white>'
 msg-format-received: '<prefix> <gray>[<yellow>From <player></yellow>] <white><text></white>'
 reload-success: '<prefix> <green>Marriage configuration reloaded.</green>'
