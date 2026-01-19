@@ -16,6 +16,18 @@ public final class TimeUtil {
         return DATE_FORMAT.format(new Date(millis));
     }
 
+    public static String formatDateTime(long millis, String pattern) {
+        SimpleDateFormat formatter;
+        try {
+            formatter = pattern == null || pattern.isBlank()
+                    ? new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                    : new SimpleDateFormat(pattern);
+        } catch (IllegalArgumentException ex) {
+            formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        }
+        return formatter.format(new Date(millis));
+    }
+
     
     public static long daysBetween(long since) {
         long now = System.currentTimeMillis();

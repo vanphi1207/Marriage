@@ -92,6 +92,14 @@ public class MessageService {
      */
     public void sendMessage(@NotNull CommandSender receiver, @NotNull MessageKey key, @NotNull Map<String, Object> placeholders) {
         String template = messages.getOrDefault(key, key.getPath());
+        sendTemplate(receiver, template, placeholders);
+    }
+
+    public void sendRawMessage(@NotNull CommandSender receiver, @NotNull String template, @NotNull Map<String, Object> placeholders) {
+        sendTemplate(receiver, template, placeholders);
+    }
+
+    private void sendTemplate(@NotNull CommandSender receiver, @NotNull String template, @NotNull Map<String, Object> placeholders) {
         // Apply PlaceholderAPI expansions if available
         if (plugin.getServer().getPluginManager().isPluginEnabled("PlaceholderAPI") && receiver instanceof Player player) {
             template = PlaceholderAPI.setPlaceholders(player, template);
