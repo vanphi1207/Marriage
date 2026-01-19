@@ -1,36 +1,37 @@
 gui:
   buttons:
     info:
-      name: '<aqua>Info</aqua>'
+      name: '<aqua>Harmony Notes</aqua>'
       lore:
-        - '<gray>View your marriage info</gray>'
+        - '<gray>Your shared story, softly told</gray>'
         - '<gray>Partner: <white>%marriage_partner%</white></gray>'
         - '<gray>Status: <white>%marriage_status%</white></gray>'
     teleport:
-      name: '<green>Teleport</green>'
+      name: '<green>Meet in a Blink</green>'
       lore:
-        - '<gray>Teleport to your partner</gray>'
+        - '<gray>Step into their world instantly</gray>'
+        - '<gray>Keep the distance close</gray>'
     home:
-      name: '<yellow>Home</yellow>'
+      name: '<yellow>Shared Home</yellow>'
       lore:
-        - '<gray>Left click to teleport home</gray>'
-        - '<gray>Right click to set home</gray>'
+        - '<gray>Left click to return together</gray>'
+        - '<gray>Right click to set your nest</gray>'
     chat:
-      name: '<blue>Chat</blue>'
+      name: '<blue>Heartline Chat</blue>'
       lore:
-        - '<gray>Toggle marriage chat</gray>'
+        - '<gray>Whisper in a private channel</gray>'
     gift:
-      name: '<gold>Gift</gold>'
+      name: '<gold>Sweet Gifts</gold>'
       lore:
-        - '<gray>Open the gift menu</gray>'
+        - '<gray>Send a little surprise</gray>'
     ring:
-      name: '<light_purple>Ring</light_purple>'
+      name: '<light_purple>Ring Atelier</light_purple>'
       lore:
-        - '<gray>Manage your ring</gray>'
+        - '<gray>Customize your promise</gray>'
     divorce:
-      name: '<red>Divorce</red>'
+      name: '<red>Parting Ways</red>'
       lore:
-        - '<gray>Initiate a divorce</gray>'
+        - '<gray>End the bond with care</gray>'
 
 prefix: '<gray>[<light_purple>♥</light_purple>]</gray>'
 
