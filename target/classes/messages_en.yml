@@ -1,5 +1,42 @@
-prefix: '<gray>[<pink>♥</pink>]</gray>'
+gui:
+  buttons:
+    info:
+      name: '<aqua>Info</aqua>'
+      lore:
+        - '<gray>View your marriage info</gray>'
+        - '<gray>Partner: <white>%marriage_partner%</white></gray>'
+        - '<gray>Status: <white>%marriage_status%</white></gray>'
+    teleport:
+      name: '<green>Teleport</green>'
+      lore:
+        - '<gray>Teleport to your partner</gray>'
+    home:
+      name: '<yellow>Home</yellow>'
+      lore:
+        - '<gray>Left click to teleport home</gray>'
+        - '<gray>Right click to set home</gray>'
+    chat:
+      name: '<blue>Chat</blue>'
+      lore:
+        - '<gray>Toggle marriage chat</gray>'
+    gift:
+      name: '<gold>Gift</gold>'
+      lore:
+        - '<gray>Open the gift menu</gray>'
+    ring:
+      name: '<light_purple>Ring</light_purple>'
+      lore:
+        - '<gray>Manage your ring</gray>'
+    divorce:
+      name: '<red>Divorce</red>'
+      lore:
+        - '<gray>Initiate a divorce</gray>'
 
+prefix: '<gray>[<light_purple>♥</light_purple>]</gray>'
+
+placeholders:
+  marriage-partner:
+    single: 'Single'
 
 help-header: '<gold>Marriage Commands:</gold>'
 help-menu: '<gray>•</gray> <yellow>/marry menu</yellow> <gray>-</gray> Open the marriage GUI'
@@ -38,44 +75,11 @@ tp-success: '<prefix> <green>Teleported to your partner.</green>'
 sethome-success: '<prefix> <green>Your marriage home has been set.</green>'
 home-success: '<prefix> <green>Teleported to your marriage home.</green>'
 home-not-set: '<prefix> <red>Your marriage home has not been set.</red>'
-chat-toggled: '<prefix> <yellow>Marriage chat toggled <state>.</yellow>'
+chat-toggled: 'actionbar:<yellow>Marriage chat toggled <state>.</yellow>'
 msg-format: '<prefix> <gray>[<yellow>To <partner></yellow>] <white><text></white>'
 msg-format-received: '<prefix> <gray>[<yellow>From <player></yellow>] <white><text></white>'
 reload-success: '<prefix> <green>Marriage configuration reloaded.</green>'
 
-gui:
-  buttons:
-    info:
-      name: '<aqua>Info</aqua>'
-      lore:
-        - '<gray>View your marriage info</gray>'
-        - '<gray>Partner: <white>%marriage_partner%</white></gray>'
-        - '<gray>Status: <white>%marriage_status%</white></gray>'
-    teleport:
-      name: '<green>Teleport</green>'
-      lore:
-        - '<gray>Teleport to your partner</gray>'
-    home:
-      name: '<yellow>Home</yellow>'
-      lore:
-        - '<gray>Left click to teleport home</gray>'
-        - '<gray>Right click to set home</gray>'
-    chat:
-      name: '<blue>Chat</blue>'
-      lore:
-        - '<gray>Toggle marriage chat</gray>'
-    gift:
-      name: '<gold>Gift</gold>'
-      lore:
-        - '<gray>Open the gift menu</gray>'
-    ring:
-      name: '<light_purple>Ring</light_purple>'
-      lore:
-        - '<gray>Manage your ring</gray>'
-    divorce:
-      name: '<red>Divorce</red>'
-      lore:
-        - '<gray>Initiate a divorce</gray>'
 
 # Admin help (displayed with /marryadmin)
 admin-help: '<gold>Marriage Admin Commands:</gold>'

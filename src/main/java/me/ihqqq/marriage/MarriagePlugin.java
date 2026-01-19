@@ -14,6 +14,8 @@ import me.ihqqq.marriage.storage.SqliteStorage;
 import me.ihqqq.marriage.storage.Storage;
 import me.ihqqq.marriage.util.SchedulerUtil;
 import me.ihqqq.marriage.gui.menu.MenuManager;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -102,7 +104,22 @@ public class MarriagePlugin extends JavaPlugin {
         if (placeholderHook != null) {
             placeholderHook.unregister();
         }
-        getLogger().info(getName() + " v" + getDescription().getVersion() + " by " + String.join(", ", getDescription().getAuthors()) + " disabled.");
+        sendLifecycleMessage("disabled", "<red>DISABLED</red>");
+    }
+
+    private void sendLifecycleMessage(@NotNull String state, @NotNull String stateLabel) {
+        String version = getDescription().getVersion();
+        String title = "<light_purple>Marriage</light_purple>";
+        String message = String.join("\n",
+                "<gray>┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓</gray>",
+                "<gray>┃</gray> " + title + " <gray>status:</gray> " + stateLabel + " <gray>┃</gray>",
+                "<gray>┃</gray> <gray>author:</gray> <white>ihqqq</white> <gray>┃</gray>",
+                "<gray>┃</gray> <gray>version:</gray> <white>" + version + "</white> <gray>┃</gray>",
+                "<gray>┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛</gray>"
+        );
+        Component component = MiniMessage.miniMessage().deserialize(message);
+        Bukkit.getConsoleSender().sendMessage(component);
+        getLogger().info("Marriage plugin " + state + ".");
     }
 
     public Storage getStorage() {

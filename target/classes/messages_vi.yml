@@ -1,5 +1,42 @@
-prefix: '<gray>[<pink>♥</pink>]</gray>'
+gui:
+  buttons:
+    info:
+      name: '<aqua>Thông tin</aqua>'
+      lore:
+        - '<gray>Xem thông tin hôn nhân</gray>'
+        - '<gray>Bạn đời: <white>%marriage_partner%</white></gray>'
+        - '<gray>Trạng thái: <white>%marriage_status%</white></gray>'
+    teleport:
+      name: '<green>Dịch chuyển</green>'
+      lore:
+        - '<gray>Dịch chuyển tới bạn đời</gray>'
+    home:
+      name: '<yellow>Nhà chung</yellow>'
+      lore:
+        - '<gray>Chuột trái để về nhà</gray>'
+        - '<gray>Chuột phải để đặt nhà</gray>'
+    chat:
+      name: '<blue>Chat</blue>'
+      lore:
+        - '<gray>Bật/tắt chat hôn nhân</gray>'
+    gift:
+      name: '<gold>Quà tặng</gold>'
+      lore:
+        - '<gray>Mở menu quà tặng</gray>'
+    ring:
+      name: '<light_purple>Nhẫn</light_purple>'
+      lore:
+        - '<gray>Quản lý nhẫn</gray>'
+    divorce:
+      name: '<red>Ly hôn</red>'
+      lore:
+        - '<gray>Khởi tạo ly hôn</gray>'
 
+prefix: '<gray>[<light_purple>♥</light_purple>]</gray>'
+
+placeholders:
+  marriage-partner:
+    single: 'Độc thân'
 
 help-header: '<gold>Lệnh Marriage:</gold>'
 help-menu: '<gray>•</gray> <yellow>/marry menu</yellow> <gray>-</gray> Mở GUI kết hôn'
@@ -38,44 +75,10 @@ tp-success: '<prefix> <green>Đã dịch chuyển tới bạn đời.</green>'
 sethome-success: '<prefix> <green>Đã đặt nhà chung.</green>'
 home-success: '<prefix> <green>Đã dịch chuyển về nhà chung.</green>'
 home-not-set: '<prefix> <red>Bạn chưa đặt nhà chung.</red>'
-chat-toggled: '<prefix> <yellow>Chat hôn nhân đã được <state>.</yellow>'
+chat-toggled: 'actionbar:<yellow>Chat hôn nhân đã được <state>.</yellow>'
 msg-format: '<prefix> <gray>[<yellow>Tới <partner></yellow>] <white><text></white>'
 msg-format-received: '<prefix> <gray>[<yellow>Từ <player></yellow>] <white><text></white>'
 reload-success: '<prefix> <green>Đã tải lại cấu hình Marriage.</green>'
-
-gui:
-  buttons:
-    info:
-      name: '<aqua>Thông tin</aqua>'
-      lore:
-        - '<gray>Xem thông tin hôn nhân</gray>'
-        - '<gray>Bạn đời: <white>%marriage_partner%</white></gray>'
-        - '<gray>Trạng thái: <white>%marriage_status%</white></gray>'
-    teleport:
-      name: '<green>Dịch chuyển</green>'
-      lore:
-        - '<gray>Dịch chuyển tới bạn đời</gray>'
-    home:
-      name: '<yellow>Nhà chung</yellow>'
-      lore:
-        - '<gray>Chuột trái để về nhà</gray>'
-        - '<gray>Chuột phải để đặt nhà</gray>'
-    chat:
-      name: '<blue>Chat</blue>'
-      lore:
-        - '<gray>Bật/tắt chat hôn nhân</gray>'
-    gift:
-      name: '<gold>Quà tặng</gold>'
-      lore:
-        - '<gray>Mở menu quà tặng</gray>'
-    ring:
-      name: '<light_purple>Nhẫn</light_purple>'
-      lore:
-        - '<gray>Quản lý nhẫn</gray>'
-    divorce:
-      name: '<red>Ly hôn</red>'
-      lore:
-        - '<gray>Khởi tạo ly hôn</gray>'
 
 # Admin help (displayed with /marryadmin)
 admin-help: '<gold>Lệnh Marriage Admin:</gold>'

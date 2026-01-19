@@ -23,6 +23,7 @@ me\ihqqq\marriage\command\MarryAdminCommand.class
 me\ihqqq\marriage\storage\Storage.class
 me\ihqqq\marriage\command\MarryCommand.class
 me\ihqqq\marriage\message\MessageKey.class
+me\ihqqq\marriage\message\MessageService$MessageTarget.class
 me\ihqqq\marriage\command\subcommand\player\RingCommand.class
 me\ihqqq\marriage\model\MarriageRecord.class
 me\ihqqq\marriage\command\subcommand\player\MsgCommand.class
