@@ -39,8 +39,15 @@ messages:
   # Should the plugin output debug messages to the console?
   debug: false
 
+sounds:
+  msg-received:
+    # Play a sound when your partner receives a /marry msg message.
+    enabled: true
+    sound: ENTITY_EXPERIENCE_ORB_PICKUP
+    volume: 1.0
+    pitch: 1.0
+
 placeholders:
   # Default text for PlaceholderAPI %marriage_notmarry% / %marriage_marry%.
   notmarry: 'Độc thân'
   marry: 'Đã kết hôn'
-

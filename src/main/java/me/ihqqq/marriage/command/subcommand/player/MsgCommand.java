@@ -6,19 +6,25 @@ import me.ihqqq.marriage.message.MessageKey;
 import me.ihqqq.marriage.message.MessageService;
 import me.ihqqq.marriage.service.MarriageService;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Locale;
+
 public class MsgCommand implements SubCommand {
 
+    private final MarriagePlugin plugin;
     private final MarriageService marriageService;
     private final MessageService messages;
 
     public MsgCommand(@NotNull MarriagePlugin plugin) {
+        this.plugin = plugin;
         this.marriageService = plugin.getMarriageService();
         this.messages = plugin.getMessageService();
     }
@@ -64,7 +70,32 @@ public class MsgCommand implements SubCommand {
             placeholdersPartner.put("player", player.getName());
             placeholdersPartner.put("text", text);
             messages.sendMessage(partner, MessageKey.MSG_FORMAT_RECEIVED, placeholdersPartner);
+            playReceivedSound(partner);
         });
+    }
+
+    private void playReceivedSound(@NotNull Player partner) {
+        ConfigurationSection section = plugin.getConfig().getConfigurationSection("sounds.msg-received");
+        if (section == null) {
+            return;
+        }
+        if (!section.getBoolean("enabled", true)) {
+            return;
+        }
+        String soundName = section.getString("sound", "ENTITY_EXPERIENCE_ORB_PICKUP");
+        if (soundName == null || soundName.isBlank()) {
+            return;
+        }
+        Sound sound;
+        try {
+            sound = Sound.valueOf(soundName.trim().toUpperCase(Locale.ROOT));
+        } catch (IllegalArgumentException ex) {
+            plugin.getLogger().warning("Invalid sound for sounds.msg-received: " + soundName);
+            return;
+        }
+        float volume = (float) section.getDouble("volume", 1.0);
+        float pitch = (float) section.getDouble("pitch", 1.0);
+        partner.playSound(partner.getLocation(), sound, volume, pitch);
     }
 
     @Override
